@@ -645,7 +645,7 @@ class Requester:
         headers: Dict[str, Any],
         output: Dict[str, Any],
     ) -> GithubException.GithubException:
-        message = output.get("message", "").lower() if output is not None else ""
+        message = output.get("message", "").lower() if isinstance(output, dict) and output is not None else ""
 
         exc = GithubException.GithubException
         if status == 401 and message == "bad credentials":
